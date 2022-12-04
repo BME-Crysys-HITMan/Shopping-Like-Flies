@@ -1,0 +1,50 @@
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+<nav class="navbar navbar-toggleable-xs">
+    <mat-toolbar color="primary">
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+            <div fxLayout="row">
+                <div fxShow="true" fxHide.gt-sm="true">
+                    <button mat-icon-button (click)="sidenav.toggle()">
+                        <mat-icon>menu</mat-icon>
+                    </button>
+                </div>
+                <h1>Shopping Like Flies</h1>
+                <div fxShow="true" fxHide.lt-md="true" class="menu-item">
+                    <button mat-button routerLink="/caffs">Caffs</button>
+                    <button mat-button routerLink="/admin" *ngIf="currentUser?.isAdmin">Admin</button>
+                </div>
+            </div>
+    
+            <div fxLayout="row">
+                <span class="timer">{{countdown}}</span>
+                <div>
+                    <button mat-button [matMenuTriggerFor]="menu" class="more">
+                    <mat-icon matListIcon>keyboard_arrow_down</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                    <div class="menu-content">
+                        <button mat-menu-item class="menu" (click)="navigateToProfile()" *ngIf="currentUser">Edit Profile</button>
+                        <hr class="header" />
+                        <button mat-menu-item class="menu" (click)="logout()" *ngIf="currentUser">Logout</button>
+                        <hr class="header" />
+                        <button mat-menu-item class="menu" (click)="login()" *ngIf="!currentUser">Login</button>
+                        <hr class="header" />
+                        <button mat-menu-item class="menu" (click)="register()" *ngIf="!currentUser">Register</button>
+                    </div>
+                    </mat-menu>
+                </div>
+            </div>
+        </div>
+    </mat-toolbar>
+    <mat-sidenav-container fxFlexFill class="example-container">
+        <mat-sidenav color="primary" #sidenav fxLayout="column" mode="over" opened="false" fxHide.gt-sm="true">
+            <div fxLayout="column">
+                <button mat-button routerLink="/caffs">Caffs</button>
+            </div>
+        </mat-sidenav>
+        <div class="content-container">
+            <router-outlet></router-outlet>
+
+        </div>
+    </mat-sidenav-container>
+</nav>

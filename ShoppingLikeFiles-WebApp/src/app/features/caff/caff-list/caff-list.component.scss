@@ -1,0 +1,50 @@
+div.root {
+    width: 100%;
+}
+
+div.container {
+    width: 80vw;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 500;
+    margin-left: 1.25rem;
+    margin-bottom: 1.25rem;
+    margin-top: 2rem;
+    color: black;
+}
+
+.card {
+    width: 250px;
+    margin: 6px;
+}
+
+button.download-list {
+    margin-left: 1rem;
+    min-width: unset;
+    width: 24px;
+    height: 24px;
+    padding: 0px;
+    line-height: 0px;
+    margin-top: 28px;
+}
+
+mat-icon.download-list {
+    transform: scale(0.6);
+}
+
+button.add-fab {
+    font-size: 32px;
+    font-weight: 100;
+    margin-right: 24px;
+    margin-top: 14px;
+}
+
+mat-card {
+    cursor: pointer;
+}
+
+mat-card:hover {
+    transform: scale(1.02);
+  }

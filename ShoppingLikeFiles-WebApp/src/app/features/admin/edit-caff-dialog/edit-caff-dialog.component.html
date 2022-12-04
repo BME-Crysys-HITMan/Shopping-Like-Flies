@@ -1,0 +1,38 @@
+<div fxLayout="column">
+    <mat-toolbar class="mat-elevation-z2" color="primary">
+        <span class="title"> Edit </span>
+    </mat-toolbar>
+    <div fxLayout="column" class="form-container">
+        <form class="form" [formGroup]="editForm" (ngSubmit)="onSubmit()">
+
+            <div class="form-row" fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon matListIcon style="width: 40px;">subtitles</mat-icon>
+                <mat-form-field fxFlex>
+                    <input autocomplete="off" matInput placeholder="Caption" formControlName="caption">
+                </mat-form-field>
+            </div>
+
+            <div class="form-row" fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon matListIcon style="width: 40px;">bookmark</mat-icon>
+                <mat-form-field class="example-chip-list" appearance="fill" style="width: 100%;">
+                    <mat-label>Tags</mat-label>
+                    <mat-chip-list #chipList formControlName="tags">
+                        <mat-chip *ngFor="let tag of editForm.get('tags').value" (removed)="remove(tag)">
+                            {{tag}}
+                            <mat-icon fxFlex fxLayoutAlign="end" matChipRemove>cancel</mat-icon>
+                        </mat-chip>
+                    </mat-chip-list>
+                    <input class="chip-input" #itemInput formControlName="input" autocomplete="off" matInput
+                        [matChipInputFor]="chipList" (matChipInputTokenEnd)="add($event)" />
+                </mat-form-field>
+            </div>
+        </form>
+    </div>
+
+    <div fxLayout="row" class="button-row">
+        <div fxLayout="row" fxLayoutAlign="end center" fxFlex>
+            <button type="button" mat-stroked-button color="primary" class="cancel" (click)="cancel()">Cancel</button>
+            <button type="submit" mat-flat-button color="primary" (click)="onSubmit()">Save</button>
+        </div>
+    </div>
+</div>
