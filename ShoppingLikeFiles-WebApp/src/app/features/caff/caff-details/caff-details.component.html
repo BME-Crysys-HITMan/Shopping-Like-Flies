@@ -14,8 +14,8 @@
         <div fxFlex fxLayout="column">
             <p class="comment-title">Comments:</p>
             <div *ngFor="let comment of comments" fxFlex fxLayout="column" class="comment-container mat-elevation-z2">
-                <span class="comment">{{comment.comment}}</span>
-                <span class="comment-user">{{comment.user.username}}</span>
+                <span class="comment">{{comment.text}}</span>
+                <span class="comment-user">{{comment.userId}}</span>
             </div>
             <div fxLayout="row" class="form-container">
                 <form fxFlex [formGroup]="commentForm" (ngSubmit)="addComment()">

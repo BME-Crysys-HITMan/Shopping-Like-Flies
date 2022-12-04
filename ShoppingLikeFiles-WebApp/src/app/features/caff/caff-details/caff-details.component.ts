@@ -5,7 +5,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { switchMap } from 'rxjs';
 import { AuthService } from 'src/app/core/auth/auth.service';
-import { CaffResponse, UserResponse } from 'src/app/sdk';
+import { AddCommentDTO, CaffResponse, CommentResponse, UserResponse } from 'src/app/sdk';
 import { CaffService } from '../caff.service';
 
 @Component({
@@ -22,26 +22,7 @@ export class CaffDetailsComponent implements OnInit {
     caff: CaffResponse;
     currentUser: UserResponse;
 
-    comments = [
-        {
-            comment: 'tesaasdas dsad as',
-            user: {
-                username: '2423423'
-            } 
-        },
-        {
-            comment: 'tesaasdas dsad as',
-            user: {
-                username: '2423423'
-            } 
-        },
-        {
-            comment: 'tesaasdas dsad as',
-            user: {
-                username: '2423423'
-            } 
-        }
-    ]
+    comments: CommentResponse[] = []
 
     constructor(
         private caffService: CaffService,
@@ -60,6 +41,7 @@ export class CaffDetailsComponent implements OnInit {
                 next: (caff: CaffResponse) => {
                     this.spinner.hide();
                     this.caff = caff;
+                    this.comments = caff.comments;
                 },
                 error: (err) => {
                     this.spinner.hide();
@@ -68,15 +50,25 @@ export class CaffDetailsComponent implements OnInit {
             });
     }
 
-    addComment() {
-        // this.caffService
-        this.comments.push({
-            comment: 'tesaasdas dsad as',
-            user: {
-                username: '2423423'
-            } 
-        })
-        // TODO: call add comment
+    addCommentCaff() {
+        const addCommentCaffDto: AddCommentDTO = {
+            caffId: this.caff.id,
+            comment: this.commentForm.value.comment,
+        }
+        this.caffService.addCommentCaff(addCommentCaffDto)
+        .subscribe({
+            next: (res) => {
+                this.spinner.hide();
+                this.comments.push({
+                    userId: this.currentUser.id,
+                    text: this.commentForm.value.comment,
+                })
+            },
+            error: (err) => {
+                this.spinner.hide();
+                this.snackBar.open('Unknown error occured')
+            }
+        });
     }
 
     buyCaff() {
