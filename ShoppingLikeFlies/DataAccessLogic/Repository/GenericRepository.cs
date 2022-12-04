@@ -46,7 +46,7 @@ internal class GenericRepository<T> : IGenericRepository<T>, IDisposable where T
 
     public async Task<T?> GetAsync(int id)
     {
-        var e = await _entitiySet.FindAsync(id);
+        var e = await _entitiySet.FirstOrDefaultAsync(x=> x.Id==id);
 
         return e;
     }

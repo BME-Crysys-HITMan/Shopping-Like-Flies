@@ -161,4 +161,9 @@ public class CaffService : ICaffService
 
         return _validator.ValidateFileAsync(caffFilePath);
     }
+
+    public async Task AddCommentAsync(AddCommentDTO addCommentDTO, Guid userId)
+    {
+        await _data.AddCommentAsync(addCommentDTO.CaffId, addCommentDTO.Comment, userId);
+    }
 }
