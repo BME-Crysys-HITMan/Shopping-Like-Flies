@@ -1,0 +1,74 @@
+<div class="root" fxLayout="column" fxLayoutAlign="start center">
+    <div class="container" fxLayout="column">
+        <div fxLayout="column" fxFill class="details-container">
+            <div class="mat-elevation-z2 bg-white" fxLayout="column">
+                <p class="title">PROFILE ATTRIBUTES</p>
+                <hr class="header" />
+                <div fxFlex>
+                    <form [formGroup]="editUserForm" (ngSubmit)="onSubmit()" fxFlex fxLayout="row wrap">
+
+                        <div fxLayout="row" fxLayoutAlign="start center">
+                            <mat-icon matListIcon>person</mat-icon>
+                            <mat-form-field hideRequiredMarker fxFlex>
+                                <input autocomplete="off" matInput required placeholder="Username"
+                                    formControlName="username">
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row" fxLayoutAlign="start center">
+                            <mat-icon matListIcon>person</mat-icon>
+                            <mat-form-field hideRequiredMarker fxFlex>
+                                <input autocomplete="off" matInput required placeholder="Firstname"
+                                    formControlName="firstname">
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row" fxLayoutAlign="start center">
+                            <mat-icon matListIcon>person</mat-icon>
+                            <mat-form-field hideRequiredMarker fxFlex>
+                                <input autocomplete="off" matInput required placeholder="Lastname"
+                                    formControlName="lastname">
+                            </mat-form-field>
+                        </div>
+                    </form>
+                </div>
+                <div class="submit" fxFlex>
+                    <button fxFlex type="submit" mat-flat-button color="primary" (click)="onSubmit()"
+                        [disabled]="!editUserForm.valid">Update
+                    </button>
+                </div>
+            </div>
+
+            <div class="mat-elevation-z2 bg-white password-change" fxLayout="column" fxFlex>
+                <p class="title">change Password</p>
+                <hr class="header" />
+                <div fxFlex>
+                    <form [formGroup]="changePasswordForm" (ngSubmit)="changePassword()" fxFlex fxLayout="row wrap">
+
+                        <div fxLayout="row" fxLayoutAlign="start center" class="password-row">
+                            <mat-icon matListIcon>lock</mat-icon>
+                            <mat-form-field hideRequiredMarker fxFlex>
+                                <input autocomplete="off" matInput type="password" required placeholder="Old Password"
+                                    formControlName="oldPassword">
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row" fxLayoutAlign="start center" class="password-row">
+                            <mat-icon matListIcon>lock</mat-icon>
+                            <mat-form-field hideRequiredMarker fxFlex>
+                                <input autocomplete="off" matInput type="password" required placeholder="New Password"
+                                    formControlName="newPassword">
+                            </mat-form-field>
+                        </div>
+                    </form>
+                </div>
+                <div class="submit" fxFlex>
+                    <button fxFlex type="submit" mat-raised-button color="primary" (click)="changePassword()"
+                        [disabled]="!editUserForm.valid">Change Password
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

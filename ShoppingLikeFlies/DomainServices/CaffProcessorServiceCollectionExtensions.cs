@@ -30,17 +30,18 @@ public static class CaffProcessorServiceCollectionExtensions
 
         services.TryAddEnumerable(
                 ServiceDescriptor.Transient<IConfigureOptions<ThumbnailGeneratorOptions>, ThumbnailGeneratorOptionsSetup>());
+        
+        services.AddDataAccessLayer(configuration);
+        services.AddAutoMapper(typeof(DomainServiesProfile).Assembly);
 
         services.TryAddSingleton<INativeCommunicator, NativeCommunicator>();
         services.TryAddTransient<ICaffValidator, DefaultCaffValidator>();
         services.TryAddTransient<IThumbnailGenerator, DefaultThumbnailGenerator>();
         services.TryAddScoped<ICaffService, CaffService>();
         services.TryAddTransient<IUploadService, UploadService>();
-        services.TryAddTransient<IDataService, DataService>();
+        services.TryAddScoped<IDataService, DataService>();
         services.TryAddTransient<IPaymentService, PaymentService>();
 
-        services.AddDataAccessLayer(configuration);
-        services.AddAutoMapper(typeof(DomainServiesProfile).Assembly);
 
         return services;
     }

@@ -34,4 +34,6 @@ public interface ICaffService
     /// <param name="caffFilePath">path/to/file</param>
     /// <returns>returns the created <see cref="Caff"/> entry's id. If null, one of the steps failed</returns>
     int? UploadFile(string caffFilePath);
+
+    Task AddCommentAsync(AddCommentDTO addCommentDTO, Guid userId);
 }
