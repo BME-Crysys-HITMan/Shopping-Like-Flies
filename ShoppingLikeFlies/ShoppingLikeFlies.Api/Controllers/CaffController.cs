@@ -1,8 +1,8 @@
-﻿
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ShoppingLikeFiles.DomainServices.Core;
 using ShoppingLikeFiles.DomainServices.DTOs;
-using System.Runtime.CompilerServices;
+using ShoppingLikeFlies.Api.Security.DAL;
 
 namespace ShoppingLikeFlies.Api.Controllers
 {
@@ -14,6 +14,7 @@ namespace ShoppingLikeFlies.Api.Controllers
         private readonly IDataService dataService;
         private readonly Serilog.ILogger logger;
         private readonly IMapper mapper;
+        private readonly UserManager<ApplicationUser> userManager;
 
         private readonly string location = "./caff-db/";
 
@@ -23,6 +24,7 @@ namespace ShoppingLikeFlies.Api.Controllers
             this.dataService = dataService;
             this.logger = logger;
             this.mapper = mapper;
+            this.userManager = userManager;
         }
 
         [HttpGet]
@@ -132,11 +134,6 @@ namespace ShoppingLikeFlies.Api.Controllers
         )
         {
             throw new NotImplementedException();
-        }
-
-        private string createFile()
-        {
-            
         }
     }
 }

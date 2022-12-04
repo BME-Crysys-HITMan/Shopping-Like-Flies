@@ -1,0 +1,29 @@
+<div class="root" fxLayout="column" fxLayoutAlign="start center">
+    <div class="container" fxLayout="column" fxFlex>
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between">
+            <div fxLayout="row">
+                <p class="title">Caffs</p>
+                <button mat-raised-button color="primary" class="download-list" matTooltip="Lista szűrése" matTooltipPosition="above"
+                    [matTooltipShowDelay]="1500" (click)="filter()" >
+                    <mat-icon class="download-list" matListIcon> filter_list </mat-icon>
+                </button>
+            </div>
+            <button mat-fab color="primary" (click)="addCaff()" class="add-fab" matTooltip="Új fájl feltöltése" *ngIf="currentUser">+</button>
+        </div>
+        <div fxFlex fxLayout="row wrap" fxLayoutAlign="center center">
+            <ng-container *ngFor="let caff of caffs">
+                <mat-card class="card" (click)="goToDetails(caff)">
+                    <mat-card-header>
+                        <mat-card-title>{{caff.caption}}</mat-card-title>
+                        <mat-card-subtitle>{{caff.creator}}</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <!-- TODO: photo -->
+                        <img mat-card-image [src]="caff.previewUrl"
+                            alt="Photo of a Shiba Inu">
+                    </mat-card-content>
+                </mat-card>
+            </ng-container>
+        </div>
+    </div>
+</div>

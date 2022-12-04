@@ -1,0 +1,57 @@
+div.root {
+    width: 100%;
+}
+
+div.container {
+    width: 80vw;
+}
+
+.details-panel {
+    margin-top: 1.5rem;
+}
+
+p.comment-title {
+    margin-top: 1rem;
+    font-size: large;
+    font-weight: bold;
+}
+
+button.add-fab {
+    font-size: 32px;
+    font-weight: 100;
+    margin-top: 1rem;
+}
+
+.mat-raised-button.add-comment {
+    margin-left: 4px;
+    max-height: 48px;
+    margin-top: 5px;
+}
+
+.comment-container {
+    border: 2px solid #607d8b;
+    border-radius: 4px;
+    margin-top: 0.75rem;
+    padding: 5px;
+}
+
+.comment-container:first-of-type {
+    margin-top: 0;
+}
+
+span.comment {
+    font-size: 14px;
+}
+
+span.comment-user {
+    font-size: 10px;
+}
+
+.form-container {
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+div.details-container {
+    padding: 1.5rem;
+}
