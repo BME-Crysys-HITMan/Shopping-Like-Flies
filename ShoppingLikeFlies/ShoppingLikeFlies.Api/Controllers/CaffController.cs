@@ -1,6 +1,8 @@
 ﻿
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ShoppingLikeFiles.DomainServices.DTOs;
+using ShoppingLikeFlies.Api.Security.DAL;
 
 namespace ShoppingLikeFlies.Api.Controllers
 {
@@ -12,13 +14,15 @@ namespace ShoppingLikeFlies.Api.Controllers
         private readonly IDataService dataService;
         private readonly Serilog.ILogger logger;
         private readonly IMapper mapper;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public CaffController(ICaffService caffService, IDataService dataService, Serilog.ILogger logger, IMapper mapper)
+        public CaffController(ICaffService caffService, IDataService dataService, UserManager<ApplicationUser> userManager, Serilog.ILogger logger, IMapper mapper)
         {
             this.caffService = caffService;
             this.dataService = dataService;
             this.logger = logger;
             this.mapper = mapper;
+            this.userManager = userManager;
         }
 
         [HttpGet]
@@ -101,5 +105,7 @@ namespace ShoppingLikeFlies.Api.Controllers
         {
             throw new NotImplementedException();
         }
+
+        
     }
 }
