@@ -41,6 +41,25 @@ namespace ShoppingLikeFlies.Api.Controllers
             throw new NotImplementedException();
         }
 
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("upload")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [DisableRequestSizeLimit]
+        [RequestFormLimits(ValueCountLimit = Int32.MaxValue, MultipartBodyLengthLimit = Int32.MaxValue)]
+        public async Task<ActionResult> UploadAsync([FromForm] CaffUploadRequest contract)
+        {
+            if (contract.file == null)
+            {
+                return BadRequest();
+            }
+
+            logger.Information("Uploaded file data: name=${name}, length={length}", contract.file.Name, contract.file.Length);
+
+            return Ok();
+        }
+
         [HttpGet]
         [Route("{id:int}")]
         [AllowAnonymous]
