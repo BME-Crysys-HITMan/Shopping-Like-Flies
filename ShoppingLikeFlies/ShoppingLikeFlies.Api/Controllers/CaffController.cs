@@ -1,6 +1,8 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
+using ShoppingLikeFiles.DomainServices.Core;
 using ShoppingLikeFiles.DomainServices.DTOs;
+using System.Runtime.CompilerServices;
 
 namespace ShoppingLikeFlies.Api.Controllers
 {
@@ -12,6 +14,8 @@ namespace ShoppingLikeFlies.Api.Controllers
         private readonly IDataService dataService;
         private readonly Serilog.ILogger logger;
         private readonly IMapper mapper;
+
+        private readonly string location = "./caff-db/";
 
         public CaffController(ICaffService caffService, IDataService dataService, Serilog.ILogger logger, IMapper mapper)
         {
@@ -57,6 +61,15 @@ namespace ShoppingLikeFlies.Api.Controllers
 
             logger.Information("Uploaded file data: name=${name}, length={length}", contract.file.Name, contract.file.Length);
 
+            if (contract.file.Length < 1)
+                return BadRequest();
+
+            var caffFileName = location + Path.GetRandomFileName();
+            using var stream = System.IO.File.Create(caffFileName);
+            await contract.file.CopyToAsync(stream);
+            using var memoryStream = new MemoryStream();
+            stream.CopyTo(memoryStream);
+            await caffService.UploadFileAsync(caffFileName);
             return Ok();
         }
 
@@ -119,6 +132,11 @@ namespace ShoppingLikeFlies.Api.Controllers
         )
         {
             throw new NotImplementedException();
+        }
+
+        private string createFile()
+        {
+            
         }
     }
 }
