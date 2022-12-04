@@ -37,7 +37,7 @@ export class CaffUploadDialogComponent implements OnInit {
 
             this.caffService.upload(formData).subscribe({
                 next: () => {
-                    this.spinner.show();
+                    this.spinner.hide();
                     this.dialogRef.close(true);
                 },
                 error: (err) => console.log(err),
