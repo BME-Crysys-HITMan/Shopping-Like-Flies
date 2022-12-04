@@ -1,0 +1,30 @@
+<div class="root" fxLayout="column" fxLayoutAlign="start center">
+    <div class="container" fxLayout="column" fxFlex>
+        <div fxFlex fxLayout="row" class="mat-elevation-z2 details-panel">
+            <img fxFlex="50" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="asda">
+            <div fxFlex="50" class="details-container" fxLayout="column">
+                <span class="caption">{{caff?.caption}}</span>
+                <span class="caption">{{caff?.tags}}</span>
+                <span class="caption">{{caff?.creator}}</span>
+
+                <button class="add-comment" (click)="buyCaff()" mat-raised-button color="primary" *ngIf="currentUser">Buy caff</button>
+            </div>
+        </div>
+
+        <div fxFlex fxLayout="column">
+            <p class="comment-title">Comments:</p>
+            <div *ngFor="let comment of comments" fxFlex fxLayout="column" class="comment-container mat-elevation-z2">
+                <span class="comment">{{comment.text}}</span>
+                <span class="comment-user">{{comment.userId}}</span>
+            </div>
+            <div fxLayout="row" class="form-container">
+                <form fxFlex [formGroup]="commentForm" (ngSubmit)="addComment()">
+                    <mat-form-field appearance="outline" fxFlex>
+                        <input autocomplete="off" matInput placeholder="Comment..." formControlName="comment">
+                    </mat-form-field>
+                    <button class="add-comment" (click)="addComment()" mat-raised-button color="primary" [disabled]="!currentUser">Add comment</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

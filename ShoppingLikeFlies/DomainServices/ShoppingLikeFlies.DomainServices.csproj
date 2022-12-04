@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <RootNamespace>ShoppingLikeFiles.DomainServices</RootNamespace>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+	  <PackageId>Crysis.HITmen.ShoppingLikeFiles.DomainServices</PackageId>
+	  <LangVersion>preview</LangVersion>
+	  <PackageReadmeFile>README.md</PackageReadmeFile>
+	  <Authors>Daniel Abraham, Aron Kerekes, Norbert Tagscherer</Authors>
+	  <Copyright>Copyright © BME-Crysys-HITMan 2022</Copyright>
+	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
+	  <Company>Crysys-Hitman</Company>
+	  <Product>DataAccessLogic</Product>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="DataAccessLogic\**" />
+    <EmbeddedResource Remove="DataAccessLogic\**" />
+    <None Remove="DataAccessLogic\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="README.md" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<InternalsVisibleTo Include="DomainServices.UnitTest" />
+		<InternalsVisibleTo Include="DomainServices.IntegrationTest" />
+		<InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="AutoMapper" Version="12.0.0" />
+	  <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+	  <PackageReference Include="CliWrap" Version="3.5.0" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.11" />
+	  <PackageReference Include="SkiaSharp" Version="2.88.3" />
+	  <PackageReference Include="SkiaSharp.NativeAssets.Linux" Version="2.88.3" />
+	  <PackageReference Include="Azure.Storage.Blobs" Version="12.14.1" />
+	  <PackageReference Include="Microsoft.Azure.Storage.Blob" Version="11.2.3" />
+	  <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1" />
+	  <PackageReference Include="Microsoft.Extensions.ObjectPool" Version="6.0.11" />
+	  <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
+	  <PackageReference Include="Microsoft.NETCore.App" Version="2.2.8" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="README.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\DataAccessLogic\ShoppingLikeFlies.DataAccessLogic.csproj" />
+	</ItemGroup>
+</Project>

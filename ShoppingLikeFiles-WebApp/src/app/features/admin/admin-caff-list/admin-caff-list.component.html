@@ -1,0 +1,47 @@
+<div class="root" fxLayout="column" fxLayoutAlign="start center">
+    <div class="table-container" fxLayout="column" fxFlex>
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between">
+            <p class="title">Caffs</p>
+        </div>
+        <table mat-table [dataSource]="dataSource" matSort>
+    
+            <ng-container matColumnDef="caption">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Caption </th>
+                <td mat-cell *matCellDef="let caff">
+                    {{caff.caption}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="tags">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Tags </th>
+                <td mat-cell *matCellDef="let caff">
+                    {{caff.tags}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="creator">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Creator </th>
+                <td mat-cell *matCellDef="let caff">
+                    {{caff.creator}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="operations">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Operations </th>
+                <td mat-cell *matCellDef="let caff">
+                    <button mat-raised-button color="primary" class="operation-button" matTooltip="Edit" matTooltipPosition="above" [matTooltipShowDelay]="500" (click)="editCaff(caff)">
+                        <mat-icon matListIcon> edit </mat-icon>
+                    </button>
+                    <button mat-raised-button color="warn" class="operation-button" matTooltip="Delete" matTooltipPosition="above" [matTooltipShowDelay]="500"
+                        (click)="deleteCaff(caff)">
+                        <mat-icon matListIcon class="table-field-button"> delete </mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[25, 50, 100]" showFirstLastButtons></mat-paginator>
+    </div>
+</div>
